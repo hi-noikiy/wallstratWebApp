@@ -1,0 +1,54 @@
+<div class="container order-book">
+  <div class="row">
+    <label class="book-symbol-label">Order Book</label>
+    <select class="select-book-symbol" (change)="requestBookSymbol($event.target.value)" [(ngModel)]="selectedSymbol" required>
+      <option *ngFor="let sm of bookSymbols" [ngValue]="sm">{{sm}}</option>
+    </select>
+  </div>
+  <div class="row">
+    <div class="col-lg sell-order-book" >
+    <mat-grid-list cols="3" rowHeight="23px">
+      <mat-grid-tile class="grid-header"
+          *ngFor="let tile of buyBookHeader"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.color]="tile.color"
+          >
+        {{tile.text}}
+      </mat-grid-tile>
+      <mat-grid-tile class ="grid-data"
+          *ngFor="let tile of booksBuy"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.color]="tile.color"
+          >
+        {{tile.text}}
+      </mat-grid-tile>
+  </mat-grid-list>
+  </div>
+  
+  <div class="col-lg buy-order-book">
+    <mat-grid-list cols="3" rowHeight="23px">
+      <mat-grid-tile class="grid-header"
+          *ngFor="let tile of sellBookHeader"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.color]="tile.color"
+          >
+        {{tile.text}}
+      </mat-grid-tile>
+      <mat-grid-tile class ="grid-data"
+          *ngFor="let tile of booksSell"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.color]="tile.color"
+          >
+        {{tile.text}}
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  </div>
+  
+
+  
+</div>

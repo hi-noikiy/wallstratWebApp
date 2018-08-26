@@ -1,0 +1,133 @@
+.product{
+	/*background-color: #fff;*/
+	/*border-radius: 1px;*/
+	/*box-shadow: 1px 1px 2px 3px #ccc;*/
+	/*height: 170px;*/
+	color: #fff;
+	/*width: 350px;*/
+	text-align: center;
+	box-sizing: border-box;
+	/*border: 1px solid red;*/
+	/*margin-top: -29px; */
+	/*background-color: rgba(0,0,0,0);*/
+	-webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  /*background-color: red;*/
+  	/*padding: 5px; */
+  	/*margin: 0px; */
+  margin-left: -97px;
+  /*border: 1px solid green;*/
+  height: auto;
+  width: auto;
+  top: 40px;
+}
+.product-wrapper{
+  /*border: 1px solid red;*/
+  /*margin: 55px;*/
+  /*box-sizing: border-box;*/
+  width: 70%;
+  /*margin-right: -30px;*/
+}
+.title{
+	/*margin: 5px;*/
+	font-size: 22px;
+  font-weight: 400;
+  line-height: 1.28em;
+  /*border: 1px solid green;*/
+
+}
+.description{
+	/*margin: 5px;*/
+  font-size: 14px;
+  line-height: 1.36em;
+  color: #a1a7ab;
+  /*border: 1px solid green;*/
+}
+.features-group{
+  /*border: 1px solid #fff;*/
+  margin-top: 21px;
+  margin-left: 11px;
+  width: auto;
+}
+.product-feature{
+  margin-top: 8px;
+  font-size: 12px;
+  font-family: sans-serif;
+  text-align: left;
+  width: 90%;
+  color:#e0e085;
+  /*border: 1px solid yellow;*/
+  width: auto;
+}
+
+.carousel-indicators {
+  list-style: none;
+}
+
+.carousel-indicators > li {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  /*border-radius: 10px;*/
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 13px;
+  width: 13px;
+  /*outline: black;*/
+  /*background-size: 100%, 100%;*/
+  border-radius: 70%;
+  border: 1px solid black;
+  /*background-image: none;*/
+}
+.carousel-item.active {
+  display:block;
+}
+
+.carousel-inner{
+  /*border: 1px solid red;*/
+}
+.control-left-right{
+  border: 1px solid yellow;
+  top: 30px;
+  margin-top: 27px;
+  width: 13px;
+  height: 35px;
+}
+.left-right-indicators{
+  border: 1px solid red;
+  top: 223px;
+}
+
+/*.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 19px;
+  color: red;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 19px;
+  color: red;
+}*/
+
+.carousel-fade {
+  .carousel-item {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out 1s;
+
+    -webkit-transition: opacity 2.5s ease-in-out 1s;
+    -moz-transition: opacity 2.5s ease-in-out 1s;
+    -o-transition: opacity 2.5s ease-in-out 1s;
+    transition: opacity 2.5s ease-in-out 1s;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}

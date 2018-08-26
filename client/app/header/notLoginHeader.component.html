@@ -1,0 +1,44 @@
+<div class="navbar fixed-top navbar-expand-lg">
+	<div class="container">
+  		<a class="navbar-brand" [routerLink]="['/home']">Wallstrat
+  			<!-- <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt=""> -->
+  		</a>
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
+  		<div class="collapse navbar-collapse" id="navbarText">
+    		<ul class="navbar-nav ml-auto ">
+      			<li class="nav-item active">
+        			<a class="nav-link" [routerLink]="['/about']">About <span class="sr-only">(current)</span></a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" [routerLink]="['/apidoc']">API Docs</a>
+      			</li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/exchanges']">Exchanges</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/coins']">Coins</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/products']">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/pricing']">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/contact']">Contact</a>
+            </li>
+      			<!-- <li class="nav-item">
+        			<a class="nav-link" href="#">Sign in</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="#">Register</a>
+      			</li> -->
+    		</ul>
+    		<span class="navbar-text">
+      			<!-- text -->
+    		</span>
+  		</div>
+  	</div>
+</div>

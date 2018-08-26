@@ -1,0 +1,18 @@
+{
+	"gdax":{
+		"marketData":{
+			"publicEndpoint": "https://api.gdax.com",
+			"privateEndpoint":,
+			"currencyPairs":,
+			"currencies":,
+		}
+	},
+	"bitfinex":{
+		"marketData":{
+			"publicEndpoint":,
+			"privateEndpoint":,
+			"currencyPairs":,
+			"currencies":,
+		}
+	}
+}

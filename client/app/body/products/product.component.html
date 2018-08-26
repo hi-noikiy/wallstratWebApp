@@ -1,0 +1,33 @@
+<div id="demo" class="carousel slide product carousel-fade" data-ride="carousel" data-interval="4000">
+
+ <!-- Indicators -->
+ <!-- <ol class="carousel-indicators left-right-indicators">
+    <li data-target="" *ngFor="let x of products;let i = index" [attr.data-slide-to]="i" ngClass="i == 0 ? 'active' : ''"></li>
+ </ol> -->
+
+  <!-- The slideshow -->
+  <div class="carousel-inner row">
+    <div *ngFor="let j of products; let k = index" [ngClass]="k == 0 ? 'carousel-item active' : 'carousel-item'">
+ 	  <div class="product-wrapper">
+ 	  	<div class="title ">{{products[k].title}}</div>
+      	<div class="description">{{products[k].description}}</div>
+      	<div class="features-group">
+      		<li class="product-feature" *ngFor="let ft of products[k].features">{{ft}}</li>
+      	</div>
+ 	  </div>     
+      
+
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+ <!--  <div class="">
+  	<a class="carousel-control-prev control-left-right" href="#demo" data-slide="prev">
+    	<span class="carousel-control-prev-icon"></span>
+  	</a>
+  	<a class="carousel-control-next control-left-right" href="#demo" data-slide="next">
+    	<span class="carousel-control-next-icon"></span>
+  	</a>
+  </div> -->
+
+</div>

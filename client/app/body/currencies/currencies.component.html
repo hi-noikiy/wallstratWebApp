@@ -1,0 +1,65 @@
+<div class="container crypto-tokens">
+
+  <mat-form-field class="search-coin">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Coin">
+  </mat-form-field>
+  <div class="row">
+    <label class="quote-currency-label">Quote currency</label>
+    <select class="custom-select select-quote-currency">
+      <option value="1" selected="selected">USD</option>
+      <option value="2">EURO</option>
+      <option value="3">GBP</option>
+      <option value="3">JPY</option>
+    </select>
+    <!-- <select class="custom-select select-time-granularity">
+      <option value="1" selected="selected">Past 24Hr</option>
+      <option value="2">Past 1W</option>
+      <option value="3">Past 1M</option>
+      <option value="3">Past 6M</option>
+      <option value="3">Past 1Y</option>
+      <option value="3">All</option>
+    </select> -->
+  </div>
+
+
+  <div class="crypto-tokens-price mat-elevation-z8">
+    
+    <table mat-table [dataSource]="dataSource" >
+
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> Asset </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> Last Trade</th>
+        <td mat-cell *matCellDef="let element" class="table-data-cell"> {{element.price}} </td>
+      </ng-container>
+      <ng-container matColumnDef="bid">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> Best Buy</th>
+        <td mat-cell *matCellDef="let element" class="table-data-cell"> {{element.bid}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ask">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> Best Sell </th>
+        <td mat-cell *matCellDef="let element" class="table-data-cell"> {{element.ask}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="change">
+        <th mat-header-cell *matHeaderCellDef class="table-header">Change%(24hr)</th>
+        <td mat-cell *matCellDef="let element" class="table-data-cell" [ngClass]="{'positive' : element.change > 0, 'negative' : element.change < 0}"> {{element.change}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="table-header"> Name </th>
+        <td mat-cell *matCellDef="let element" class="table-data-cell"> {{element.name}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;" class="header-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+    
+    </table>
+  
+  </div>
+
+</div>
+

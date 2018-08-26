@@ -1,0 +1,24 @@
+{
+	"gdax":{
+		"publicEndpoint": "https://api.gdax.com",
+		"privateEndpoint":"",
+		"currencies": {
+			"BITCOIN": {
+				"id" : "BTC",
+				"currencyPairs":["BTC-USD", "BTC-EUR", "BTC-GBP"]
+			},
+			"BITCOIN CASH": {
+				"id" : "BCH",
+				"currencyPairs":["BCH-USD","BCH-EUR","BCH-BTC" ]
+			},
+			"ETHER": {
+				"id" : "ETH",
+				"currencyPairs":["ETH-USD","ETH-EUR","ETH-BTC" ]
+			},
+			"LITECOIN": {
+				"id" : "LTC",
+				"currencyPairs":["LTC-USD","LTC-EUR","LTC-BTC" ]
+			}
+		} 
+	}
+}

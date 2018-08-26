@@ -1,0 +1,25 @@
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-3" >
+      <product-list> </product-list>
+    </div>
+
+    <div class="col-lg-4 ">
+      <currencies-list></currencies-list>
+    </div>
+
+    <div class="col coin-desc">
+      <coin-info (updateQuerySymbol)="updateRequestSymbol($event)"></coin-info>
+      <coin-graph></coin-graph>
+    </div>
+     
+  </div>
+
+  <div class="row">
+    
+  </div>
+  
+</div>
+
