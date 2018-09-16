@@ -1,0 +1,34 @@
+.xch-codes-header{
+	font-size: 14px;
+	font-weight: 600;
+	color: #222;
+	font-family: Rale;
+	height: 20px;
+}
+
+.xch-codes{
+	color: #222;
+	left: 3px;
+	margin-top: 27px;
+	float: left;
+	/*left: -20px;*/
+	top: 40px;
+
+}
+/*.list-group{
+	border: 1 px solid orange;
+	background-color: red;
+	margin-left: -30px;
+}*/
+.list-group-item{
+	padding: 3px;
+	border: none;
+	font-weight: 540;
+	font-family: monospace;
+	/*left: -20px;*/
+	/*margin-left: -61px;*/
+	list-style-type: square;
+	display: list-item;
+	left: 51px;
+}
+

@@ -80,8 +80,8 @@ export class CoinInfoComponent implements OnInit{
          
       }
     }
-    this.selectedSymbol="BTC-USD";
-    this.displayBook("BTC-USD");
+    this.selectedSymbol=this.bookSymbols[0];
+    this.displayBook(this.selectedSymbol);
     // two way binding using ngModel
     // console.log("selected symbol ", this.selectedSymbol);
     

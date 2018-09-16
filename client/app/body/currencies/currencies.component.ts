@@ -48,7 +48,8 @@ export class CurrenciesComponent implements OnInit{
             datarow.bid = parseFloat(row['bid_price']).toFixed(4) 
             datarow.ask = parseFloat(row['ask_price']).toFixed(4) 
             datarow.symbol = row['symbol']
-            datarow.change = parseFloat(row['percentage_change']).toFixed(2) 
+            // console.log("change " ,  row['symbol'] , row['percentage_change']);
+            datarow.change = parseFloat(row['percentage_change']).toFixed(4) 
             datarow.name = row['name'] 
             // console.log("row: ", datarow);
          	  ELEMENT_DATA.push(datarow);

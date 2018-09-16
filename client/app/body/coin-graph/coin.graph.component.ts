@@ -30,8 +30,8 @@ export class CoinGraphComponent implements AfterViewInit{
           displayFormats: {
             day: 'ddd, MMM Do',
           },
-          min: this.min_time,
-          max: this.max_time
+          // min: this.min_time,
+          // max: this.max_time
         }
       }],
       yAxes: [{
@@ -79,16 +79,24 @@ export class CoinGraphComponent implements AfterViewInit{
   private historicalDataMap:Map<string, any> = new Map<string, any>();
   private graphSymbols:string[]= new Array(); 
   private selectedTime:string;
+  private selectedSymbol:string;
 
   @ViewChild(BaseChartDirective) public chart: BaseChartDirective;
 
 	constructor(private http: HttpClient, private queryService: QueryService){
-		
+		this.selectedTime='6M';
 	}
+  ngOnChanges():void{
+    this.displayGraph(this.selectedSymbol);
+  }
 	ngAfterViewInit():void {
-
-		this.getHistoricalData().subscribe( rates => {
-        for(let rate of rates){
+    this.updateGraph({interval:'6M', scale:'1D'});
+	}
+  updateGraph(params){
+    this.getHistoricalData(params).subscribe( rates => {
+      this.graphSymbols = [];
+      this.historicalDataMap.clear();
+      for(let rate of rates){
           let dataPoints: Array<any>=[];
           let symbol:string;
           for(const {row, index} of JSON.parse(rate).map((row, index) => ({ row, index }))){
@@ -100,17 +108,16 @@ export class CoinGraphComponent implements AfterViewInit{
           }
           this.graphSymbols.push(symbol)
           this.historicalDataMap.set(symbol, dataPoints);
-        }
-        this.selectedTime="3M";
-        this.min_time.setMonth(this.min_time.getMonth() - 3); 
-        this.displayGraph("BTC-USD");
-        }, 
-        err => { 
-        	console.log(err);
-        });
-	}
-  
+      }
+        // this.min_time.setMonth(this.min_time.getMonth() - 6); 
+        this.displayGraph(this.graphSymbols[0]);
+      }, 
+      err => { 
+          console.log(err);
+      });
+  }
   displayGraph(symbol:string){
+    this.selectedSymbol = symbol;
     this.lineChartData = [{data: this.historicalDataMap.get(symbol), label: symbol, lineTension:0, steppedLine: true,}];
   }
 	// events
@@ -121,28 +128,42 @@ export class CoinGraphComponent implements AfterViewInit{
   public chartHovered(e:any):void {
     // console.log(e);
   }
-  getHistoricalData(data:any={}): Observable<any[]> {
-    return this.http.get<any[]>('/api/historical-data');
+  getHistoricalData(parameters:any={}): Observable<any[]> {
+    let queryParams = new HttpParams();
+    // Begin assigning parameters
+    queryParams = queryParams.append('interval', parameters.interval);
+    queryParams = queryParams.append('scale', parameters.scale);
+    // Make the API call using the new parameters.
+    return this.http.get<any[]>('/api/historical-data', { params: queryParams } );
+
   }
   requestGraphTimeFrame(time_:string){
     this.selectedTime=time_;
     let min_:Date = new Date();
-     
-    if(time_="3M"){
-      min_.setMonth(min_.getMonth() - 3); 
-    }
-    else if(time_="1M"){
-      min_.setMonth(min_.getMonth() - 1);
+    // alert(time_) 
+    if(time_="6M"){
+      this.updateGraph({interval:'6M', scale:'1D'});
+      // min_.setMonth(min_.getMonth() - 6); 
     }
     else if(time_="1W"){
-       min_.setDate(min_.getDate() - 7);
+      this.updateGraph({interval:'7D', scale:'1H'});
+      // min_.setDate(min_.getDate() - 7);
     }
-    else if(time_="1D"){
-      min_.setDate(min_.getDate() - 1);
+    else if(time_="4H"){
+      this.updateGraph({interval:'4H', scale:'1m'});
+      // min_.setDate(min_.getDate() - 1);
     }
-    this.min_time = min_;
-    this.chart.chart.config.options = this.lineChartOptions;
+    // this.min_time = min_;
+    // this.chart.chart.config.options.scales.xAxes[0].time.min = min_;
+    // this.chart.config.options = this.lineChartOptions;
+
+    // this.chart.chart.update();
+
+    // this.lineChartData = [{data: this.historicalDataMap.get(this.selectedSymbol), label: this.selectedSymbol, lineTension:0, steppedLine: true,}];
+    // this.chart.chart.ngOnChanges({});
+    this.displayGraph(this.selectedSymbol);
     this.chart.chart.update();
+    // console.log(this.selectedTime);
   }
 
 }

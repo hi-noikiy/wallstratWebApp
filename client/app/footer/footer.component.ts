@@ -9,10 +9,7 @@ import { Component, OnInit} from '@angular/core';
 })
 
 export class FooterComponent implements OnInit{ 
-	title = 'footer works!';
-	/*
-		ngOnInit lifecycle hook for you to step in and initialize the "notLoginHeader.component.html" component
-	*/
+	
 	ngOnInit() {
     }
 }

@@ -1,8 +1,24 @@
-
-<div class="container">
-  <div class="row">
-    exchanges 
-  </div>
+<div class="container all-products-pairs">
+	<div class="row title">
+			<div class="col-3 title-entity">Market</div>
+			<div class="col-3 title-entity">Base Currency</div>
+			<div class="col-3 title-entity">Traded Instrument Pairs</div>
+	</div>
+	<div *ngFor="let market of grid">
+		<div class="row market-row">
+			<div class="col-3 xchcode">{{market.code}}</div>
+			<div class="col-3">
+				<div class="row base_curr" *ngFor="let pair of market.pairs">
+					{{pair.base_currency}}
+				</div>>
+			</div>
+			<div class="col-6">
+				<div class="row all_pairs" *ngFor="let pair of market.pairs">
+					{{pair.symbols.join("  ")}}
+				</div>>
+			</div>
+		</div>
+	</div>
   
 </div>
 

@@ -1,0 +1,22 @@
+
+.rest-url{
+	font-size: 11px;
+	font-weight: bold;
+	font-family: monospace;
+}
+mat-panel-title{
+	color: #512E5F;
+	font-size: 14px;
+	font-weight: bold;
+
+}
+.rest-api-header{
+	font-size: 14px;
+	font-weight: 600;
+	color: #222;
+	font-family: Rale;
+	height: 20px;
+}
+.mat-toolbar{
+	margin-bottom: 13px;
+}

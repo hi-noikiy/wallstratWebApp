@@ -1,0 +1,27 @@
+
+<div class="container">
+  <div class="row">
+  	<mat-toolbar>  
+  		<mat-toolbar-row>
+    		<span class="rest-api-header">Rest API</span>
+  		</mat-toolbar-row>
+	</mat-toolbar>
+     <mat-accordion>
+  		<!-- <mat-expansion-panel *ngFor="let api of APIS; let i = index;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" 
+  		[expanded]="i==0"> -->
+  		<mat-expansion-panel *ngFor="let api of APIS; let i = index;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" 
+  		[expanded]="false">
+    		<mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'120px'" >
+      			<mat-panel-title>
+        			{{api.title}}
+      			</mat-panel-title>
+				<mat-panel-description>
+    				{{api.description}}
+  				</mat-panel-description>
+  			</mat-expansion-panel-header>
+  			<p class='rest-url'>{{api.rest}}</p>
+  		</mat-expansion-panel>
+	</mat-accordion>
+  
+</div>
+

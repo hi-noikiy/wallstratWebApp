@@ -1,0 +1,50 @@
+/*::ng-deep .mat-select-content{
+    width:2000px;
+    background-color: red;
+    font-size: 10px;   
+}*/
+::ng-deep .nav-item .mat-form-field{
+	width: 100px;
+	font-size: 11px;
+	font-weight: bold;
+	
+}
+::ng-deep .nav-item .mat-select-placeholder{
+	color: #5932cd !important;
+	/*margin-top:-15px;*/
+}
+::ng-deep .nav-item .mat-select-value{
+	width: 80%;
+	
+}
+::ng-deep .mat-select-panel{
+	min-height: 400px;
+}
+::ng-deep .nav-item .mat-form-field-underline {
+  display: none;
+}
+.mat-option a {
+  text-decoration: none;
+  color: #1a53ff;
+  font-weight: bold;
+  font-size: 12px;
+}
+.fa-icon{
+	margin-top: 14px;
+	font-size:14px;
+	padding-right: -3px;
+	color:#4d79ff;
+	cursor: pointer;
+}
+.fa-home{
+	font-size:26px;
+	padding-right: 5px;
+	color:#4d79ff;
+	cursor: pointer;
+}
+.fa-folder{
+	
+}
+.fa-institution{
+	padding-right: 5px;
+}

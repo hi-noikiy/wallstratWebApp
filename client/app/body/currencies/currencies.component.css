@@ -81,6 +81,13 @@ table {
 	font-weight: bold;
 	font-family: Raleway;
 }
+.mat-cell:nth-child(3){
+	color: #222;
+	/*font-weight: 500;*/
+	font-size: 10px;
+	font-weight: bold;
+	font-family: Raleway;
+}
 .mat-header-cell:first-child{
 	padding-left: 40px;
 }

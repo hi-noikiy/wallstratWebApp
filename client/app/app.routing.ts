@@ -12,6 +12,11 @@ import { PricingHeaderComponent } from './pages/pricing/pricing.component';
 import { ProductsHeaderComponent } from './pages/products/products.component';
 import { InvalidComponent } from './pages/invalid-page/invalid.component';
 
+
+import { ExchangeAPIDocComponent } from './pages/api/exchange/xchcodes.component';
+import { RestAPIDocComponent } from './pages/api/restapi/restapidoc.component';
+import { WSSAPIDocComponent } from './pages/api/wssapi/wssapidoc.component';
+
 const routes: Routes = [
   { 
     path: '', 
@@ -27,7 +32,30 @@ const routes: Routes = [
   },
   { 
     path: 'apidoc',
-    component: APIDocHeaderComponent 
+    component: APIDocHeaderComponent,
+    children: [ 
+      
+      {
+        path: '',
+        component: RestAPIDocComponent,
+        outlet: "apidoc_sidebar"
+      },
+      {
+        path: 'exchange',
+        component: ExchangeAPIDocComponent,
+        outlet: "apidoc_sidebar"
+      },
+      {
+        path: 'restapi',
+        component: RestAPIDocComponent,
+        outlet: "apidoc_sidebar"
+      },
+      {
+        path: 'wssapi',
+        component: WSSAPIDocComponent,
+        outlet: "apidoc_sidebar"
+      }
+    ]
   },
   { 
     path: 'exchanges',

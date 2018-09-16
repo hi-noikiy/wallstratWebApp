@@ -17,7 +17,7 @@
   	/*margin: 0px; */
   margin-left: -97px;
   /*border: 1px solid green;*/
-  height: auto;
+  height: 270px;
   width: auto;
   top: 40px;
 }
@@ -130,4 +130,17 @@
       opacity: 1;
     }
   }
+}
+.API_button{
+  margin-left: -59px;
+  background-color: #f2f2f2;
+  /*color:  #1e3d7b;*/
+  font-weight: bold;
+  font-size: 13px;
+  width: 200px;
+}
+
+.nav-link{
+  /*color:  #1e3d7b;*/
+  color: #1a53ff;
 }

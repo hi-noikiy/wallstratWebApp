@@ -1,0 +1,15 @@
+
+<div class="container">
+  <div class="row">
+  	<mat-toolbar>  
+  		<mat-toolbar-row>
+    		<span class="xch-codes-header">Exchange Codes</span>
+  		</mat-toolbar-row>
+	</mat-toolbar>	
+  <!-- <div class="xch-codes-header">Exchange Codes</div> -->
+  <ul class="list-group xch-codes">
+  	<li class="list-group-item" *ngFor="let code of exchangeCodes">{{ code }}</li>
+  </ul>
+  
+</div>
+

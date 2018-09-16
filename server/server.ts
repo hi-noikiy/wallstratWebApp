@@ -5,8 +5,12 @@ import * as morgan from 'morgan';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
 
-import { MarketPublicFeed, ExchangeCodes} from 'wallstrat'
+var Promise = require('es6-promise').Promise;
 
+const request = require('request');
+
+
+import {ExchangeCodes} from 'wallstrat';
 
 
 const app = express();
@@ -21,50 +25,72 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 
+// let feed = new MarketPublicFeed();
+
+function request_(options){
+
+    return new Promise(function(resolve, reject){
+      request(options, function(error, response, body){
+        if(error){
+          // setTimeout(reject, 1000, error);
+          reject(error);
+       }
+       else{
+          // setTimeout(resolve, 50, body);
+          resolve(body);
+       }
+      });
+    });
+}
 
 
-
-let feed = new MarketPublicFeed();
-
+/////////////////////////////////////////////////////////////////////////////////
 
 
-
-const gdaxCoins = new Map(JSON.parse(feed.getPrimeTokens(ExchangeCodes.GDAX)).map(e => [e.code, e.name]));
-const bitfinexCoins = new Map(JSON.parse(feed.getPrimeTokens(ExchangeCodes.BITFINEX)).map(e => [e.code, e.name]));
-// console.log("GDAX Coins ", gdaxCoins);
-// console.log("BITFINEX Coins ", bitfinexCoins);
-// console.log(JSON.parse(feed.getTokens(ExchangeCodes.GDAX)));
-
-const gdaxProducts = JSON.parse(feed.getPrimeProductsPairs(ExchangeCodes.GDAX)).reduce(function(map, e) {
-    for(let pr of e.symbols){
-    	map[pr] = e.base_currency;
-    }
-    return map;
-}, {});
-const bitfinexProducts = JSON.parse(feed.getPrimeProductsPairs(ExchangeCodes.BITFINEX)).reduce(function(map, e) {
-    for(let pr of e.symbols){
-    	map[pr] = e.base_currency;
-    }
-    return map;
-}, {});
+let gdaxCoins:any;
+request_('http://192.168.70.1:2929/api/coins/gdax/').then(coins=>{
+	// console.log("coins bro ", JSON.parse(coins));
+	gdaxCoins = new Map(JSON.parse(coins).map(e => [e.code, e.name]));
+	// console.log("coins bro ", gdaxCoins);
+});
 
 
-// mongoose.connect(process.env.MONGODB_URI);
-// const db = mongoose.connection;
-// (<any>mongoose).Promise = global.Promise;
+let bitfinexCoins:any;
+request_('http://192.168.70.1:2929/api/coins/bitfinex/').then(coins=>{
+	bitfinexCoins = new Map(JSON.parse(coins).map(e => [e.code, e.name]));
+});
 
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', () => {
-//   console.log('Connected to MongoDB');
 
-//   setRoutes(app);
+let productsList:Map<ExchangeCodes, Array<string>>=new Map<ExchangeCodes, Array<string>>();
 
-//   app.listen(app.get('port'), () => {
-//     console.log('Mean Stack listening on port ' + app.get('port'));
-//   });
+let gdaxProducts:any;
+request_('http://192.168.70.1:2929/api/products/gdax/').then(products=>{
+	productsList[ExchangeCodes.GDAX] = JSON.parse(products);
+    gdaxProducts = JSON.parse(products).reduce(function(map, e) {
+    		for(let pr of e.symbols){
+    			map[pr] = e.base_currency;
+    		}
+    		return map;
+		}, {});
+    // console.log("gdax products ", gdaxProducts);
+});
 
-// });
 
+let bitfinexProducts:any;
+request_('http://192.168.70.1:2929/api/products/bitfinex/').then(products=>{
+	productsList[ExchangeCodes.BITFINEX] = JSON.parse(products);
+    bitfinexProducts = JSON.parse(products).reduce(function(map, e) {
+    	for(let pr of e.symbols){
+    		map[pr] = e.base_currency;
+    	}
+    	return map;
+	}, {});
+	// console.log("bitfinex products ", bitfinexProducts)
+});
+
+
+let exchangeCodes: Array<String>= ['gdax', 'bitstamp', 'gemini', 'hitbtc', 'huobi', 'kraken', 'kucoin',
+	'luno', 'binance', 'okcoin', 'bitfinex', 'bitrex', 'coinone'];
 
 
 app.get('/', function(req, res) {
@@ -78,10 +104,10 @@ app.listen(app.get('port'), () => {
 app.get('/api/open-order', function (req, res) {
 
 	let resultPromises = [];
-	for(let pr of JSON.parse(feed.getPrimeProductsPairs(ExchangeCodes.GDAX)) ){
+	for(let pr of productsList[ExchangeCodes.GDAX]){
 		for(let symbol of pr.symbols){
-			
-			let bookPromise = feed.getOrderBook(ExchangeCodes.GDAX, {productID:symbol, level:2}).then(book =>{
+			let opt_book = 'http://192.168.70.1:2929/api/orderbook/gdax/'+ symbol;
+			let bookPromise = request_(opt_book).then(book =>{
 				return book;
 			}).catch(err=>{
 
@@ -91,7 +117,7 @@ app.get('/api/open-order', function (req, res) {
 	}
 	Promise.all(resultPromises).then(function(books){ // books = array of book
 		// console.log("books ", books);
-		return res.send(books);		
+		res.send(books);		
 	}).catch(err=>{
 
 	});
@@ -106,19 +132,16 @@ app.post('/api/last-trade', function (req, res) {
 
 app.get('/api/coin-table', function (req, res) {
     
-
-	let startTime:Date = new Date(), endTime:Date = new Date();
-	endTime.setHours(endTime.getHours() - 1); 
-	startTime.setDate(startTime.getDate() - 1)
-
 	let resultPromises = [];
-	for(let pr of JSON.parse(feed.getPrimeProductsPairs(ExchangeCodes.GDAX)) ){
+
+	for(let pr of productsList[ExchangeCodes.GDAX] ){
 
 		for(let symbol of pr.symbols){
 			let row = {};
-			let tickerchangePromise = feed.getTicker(ExchangeCodes.GDAX, {productID:symbol}).then(function(ticker){
-				
-				ticker = JSON.parse(ticker)
+			let opt_ticker = 'http://192.168.70.1:2929/api/ticker/gdax/'+ symbol;			
+			let tickerchangePromise =request_(opt_ticker).then(function(ticker){
+				ticker = JSON.parse(ticker);
+				// console.log(" gdax ticker ", ticker)
 				row['symbol'] = ticker.symbol;
 				row['price'] =  ticker.last_trade_price;
 				row['bid_price'] =  ticker.bid_price;
@@ -126,8 +149,11 @@ app.get('/api/coin-table', function (req, res) {
 				row['base_currency'] =  gdaxProducts[symbol];
 				row['name'] = gdaxCoins.get(gdaxProducts[symbol]);
 
-				return feed.getChange(ExchangeCodes.GDAX, {productID:symbol, startTime: startTime.toISOString(), endTime: endTime.toISOString(),timeScale:21600}).then( change =>{
-					change = JSON.parse(change)
+				let opt_pricechange = 'http://192.168.70.1:2929/api/pricechange/gdax/'+ symbol;	
+
+				return request_(opt_pricechange).then( change =>{
+					change = JSON.parse(change);
+					// console.log('gdax change ', change.change_percentage)
 					row['percentage_change'] =  change.change_percentage;
 					
 				});
@@ -140,13 +166,13 @@ app.get('/api/coin-table', function (req, res) {
 		}
 
 	}
-	for(let pr of JSON.parse(feed.getPrimeProductsPairs(ExchangeCodes.BITFINEX)) ){
+	for(let pr of productsList[ExchangeCodes.BITFINEX] ){
 
 		for(let symbol of pr.symbols){
 			let row = {};
-			let tickerchangePromise = feed.getTicker(ExchangeCodes.BITFINEX, {productID:"t".concat(symbol.toUpperCase())}).then(function(ticker){
-				
-				ticker = JSON.parse(ticker)
+			let opt_ticker = 'http://192.168.70.1:2929/api/ticker/bitfinex/'+ symbol;		
+			let tickerchangePromise = request_(opt_ticker).then(function(ticker){
+				ticker = JSON.parse(ticker);
 				row['symbol'] = symbol.toUpperCase();
 				row['price'] =  ticker.last_trade_price;
 				row['bid_price'] =  ticker.bid_price;
@@ -162,27 +188,29 @@ app.get('/api/coin-table', function (req, res) {
 		}
 	}
 	Promise.all(resultPromises).then(function(table){ // table = array of row
-		return res.send(table);		
+		// res.send(table);
+		res.send(table.filter(v => v.price)); // only if price of row is defined  	
 	}).catch(err=>{
 
-	});
-	
+	});	
 	
 });
 
 
+
 app.get('/api/historical-data', function (req, res) {
 
-
-	let startTime:Date = new Date(), endTime:Date = new Date();
-	// startTime.setDate(startTime.getDate() - 7) // last seven days of data
-	startTime.setMonth(startTime.getMonth() - 3); // last one month  
-
 	let resultPromises = [];
-	for(let pr of JSON.parse(feed.getPrimeProductsPairs(ExchangeCodes.GDAX)) ){
+	for(let pr of productsList[ExchangeCodes.GDAX] ){
 		for(let symbol of pr.symbols){
+			let opt_ohlc = 'http://192.168.70.1:2929/api/ohlc/gdax/'+ symbol;
+			let request_option = {
+				method:'GET',
+				uri:opt_ohlc,
+				qs:req.query
 
-			let ratesPromise = feed.getHistoricRates(ExchangeCodes.GDAX, {productID:symbol, startTime: startTime.toISOString(), endTime: endTime.toISOString(),timeScale:86400}).then(rate =>{
+			};	
+			let ratesPromise = request_(request_option).then(rate =>{
 				return rate;
 			}).catch(err=>{
 
@@ -191,12 +219,39 @@ app.get('/api/historical-data', function (req, res) {
 		}
 	}
 	Promise.all(resultPromises).then(function(rates){ // rates = array of rate
-		return res.send(rates);		
+		res.send(rates);		
 	}).catch(err=>{
 
 	});
 });
 
 
+
+app.get('/api/traded-pairs', function (req, res) {
+	let resultPromises = [];
+	// let tradedPairsList:Map<String, Array<String>>=new Map<String, Array<String>>();
+	// let tradedPairsList=[];
+	for(let xchCode of exchangeCodes){
+		let row = {};
+		let tradedPairsPromise=request_('http://192.168.70.1:2929/api/products/'+xchCode).then(products=>{
+			// let code : ExchangeCodes = ExchangeCodes[<string>(xchCode).toUpperCase()];
+			// tradedPairsList.set(xchCode, JSON.parse(products));
+			row['code'] = xchCode;
+			row['pairs'] = JSON.parse(products);
+			// tradedPairsList.push(row)
+			return row;
+		}).catch(err =>{
+			// console.log(err);
+			// proimse all get resolved even if one promise fails - just catch it here 
+		});
+		resultPromises.push(tradedPairsPromise);
+	}
+	Promise.all(resultPromises).then(function(productsPairs){ // productsPairs = array of row
+		res.send(productsPairs);		
+	}).catch(err=>{
+
+	});
+	
+});
 
 export { app };

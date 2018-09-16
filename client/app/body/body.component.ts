@@ -20,9 +20,9 @@ export class BodyComponent implements AfterViewInit{
 
 	ngAfterViewInit() {
 
-    }
-    updateRequestSymbol(symbol:any){
-    	// console.log("value from event, " symbol);
-    	this.graphComponent.displayGraph(symbol);
-    }
+  }
+  updateRequestSymbol(symbol:any){
+    // console.log("value from event, " symbol);
+    this.graphComponent.displayGraph(symbol);
+  }
 }

@@ -16,14 +16,14 @@ export class ProductComponent {
 		this.products = [
 		   new Product('Crypto Market Data Solutions', 'Single API to consume market data', '',
 		   	[
-		   		'Get normalized, low latecy data', 'All major exchange connectivity ','Historical market data',
+		   		'Get normalized data', 'All major exchange connectivity ','Historical market data',
 		   		'Rest, Websocket Feed API ...' 
 		   	]),
-		   new Product('Trading toolkit', 'Private account API, providing trading features', '',
-		   	[	
-		   		'Authentication API', 'Trading API - fill, deposit, withdraw etc.'
-		   	]
-		   	),
+		   // new Product('Trading toolkit', 'Private account API, providing trading features', '',
+		   // 	[	
+		   // 		'Authentication API', 'Trading API - fill, deposit, withdraw etc.'
+		   // 	]
+		   // 	),
 		   new Product('Analytics Tools', 'High Performance Analytics', '',
 		   	[
 		   		'Time series analysis', 'Trading Signals', 'price comparisons'

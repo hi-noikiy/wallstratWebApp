@@ -1,2 +1,48 @@
+.all-products-pairs{
+	background-color: #fff;
+	margin-top: 3px;
+	border-radius: 4px;
+	padding: 15px;
+	overflow-x: hidden; 
+	padding-left: 53px;
+	padding-right: 53px;
+}
+.title{
+	border: 0.5px solid #e6e6e6;
+	height: 40px;
+	text-align: center;
+	padding-top: 9px; 
+	background-color: #f6f6f6;
+	border-radius: 4px;
+	margin-bottom: 13px;
+	font-weight: 600;
+	font-size: 13px;
+	color: #1a1aff;
+}
+.title-entity{
+	text-align: left;
+}
+.market-row{
+	border: 1px solid #e6e6e6;
+	padding: 5px;
+	padding-top: 13px;
+	border-radius: 2px;
+}
 
+.xchcode{
+	color: #5B2C6F;
+	font-size: 21px;
+	font-weight: 550;
+	line-height: 1.4rem;
+}
+.base_curr{
+	color: #2E86C1;
+	font-size: 15px;
+	font-weight: 550;
+}
+.all_pairs{
+	color: #27AE60;
+	font-size: 15px;
+	font-weight: 550;
 
+}
