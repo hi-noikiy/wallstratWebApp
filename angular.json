@@ -11,10 +11,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/public",
+            "outputPath": "dist/client",
             "index": "client/index.html",
             "main": "client/main.ts",
-            "tsConfig": "client/tsconfig.app.json",
+            "tsConfig": "client/tsconfig.json",
             "polyfills": "client/polyfills.ts",
             "assets": [
               "client/assets",

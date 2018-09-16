@@ -76,10 +76,10 @@ export class CoinGraphComponent implements AfterViewInit{
     }
   ];
   public  lineChartType:string = 'line';
-  private historicalDataMap:Map<string, any> = new Map<string, any>();
-  private graphSymbols:string[]= new Array(); 
-  private selectedTime:string;
-  private selectedSymbol:string;
+  public historicalDataMap:Map<string, any> = new Map<string, any>();
+  public graphSymbols:string[]= new Array(); 
+  public selectedTime:string;
+  public selectedSymbol:string;
 
   @ViewChild(BaseChartDirective) public chart: BaseChartDirective;
 

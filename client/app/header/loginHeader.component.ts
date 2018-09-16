@@ -7,8 +7,8 @@ import { Component} from '@angular/core';
  
 @Component({
     selector: 'app-login-header',
-    templateUrl: './LoginHeader.component.html',
-  	styleUrls: ['./LoginHeader.component.css'],
+    templateUrl: './loginHeader.component.html',
+  	styleUrls: ['./loginHeader.component.css'],
   	// encapsulation: ViewEncapsulation.None
 })
  

@@ -25,21 +25,21 @@ export class CoinInfoComponent implements OnInit{
 
   @Output() updateQuerySymbol = new EventEmitter<String>();
 	
-  private buyBookHeader = [
+  public buyBookHeader = [
     	{text: 'Price', cols: 1, rows: 1, color: '#e6e6e6'},
     	{text: 'Size', cols: 1, rows: 1, color: '#e6e6e6'},
     	{text: 'Side', cols: 1, rows: 1, color: '#e6e6e6'},
   ];
-  private sellBookHeader = [
+  public sellBookHeader = [
       {text: 'Price', cols: 1, rows: 1, color: '#e6e6e6'},
       {text: 'Size', cols: 1, rows: 1, color: '#e6e6e6'},
       {text: 'Side', cols: 1, rows: 1, color: '#e6e6e6'},
   ];
-  private booksBuy = []; 
-  private booksSell = [];
-  private orderBookMap:Map<string, any> = new Map<string, any>();
-  private bookSymbols:string[]= new Array();
-  private selectedSymbol:string;
+  public booksBuy = []; 
+  public booksSell = [];
+  public orderBookMap:Map<string, any> = new Map<string, any>();
+  public bookSymbols:string[]= new Array();
+  public selectedSymbol:string;
 
   constructor(private http: HttpClient, private queryService: QueryService){
     this.updateOpenOrder();
