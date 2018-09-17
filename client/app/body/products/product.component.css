@@ -1,3 +1,4 @@
+
 .product{
 	/*background-color: #fff;*/
 	/*border-radius: 1px;*/
@@ -18,14 +19,14 @@
   margin-left: -97px;
   /*border: 1px solid green;*/
   height: 270px;
-  width: auto;
+  width: 100%;
   top: 40px;
 }
 .product-wrapper{
   /*border: 1px solid red;*/
   /*margin: 55px;*/
   /*box-sizing: border-box;*/
-  width: 70%;
+  width: 99%;
   /*margin-right: -30px;*/
 }
 .title{
@@ -47,14 +48,14 @@
   /*border: 1px solid #fff;*/
   margin-top: 21px;
   margin-left: 11px;
-  width: auto;
+  width: 100%;
 }
 .product-feature{
   margin-top: 8px;
   font-size: 12px;
   font-family: sans-serif;
   text-align: left;
-  width: 90%;
+  width: 100%;
   color:#e0e085;
   /*border: 1px solid yellow;*/
   width: auto;
@@ -79,7 +80,7 @@
   /*outline: black;*/
   /*background-size: 100%, 100%;*/
   border-radius: 70%;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   /*background-image: none;*/
 }
 .carousel-item.active {
@@ -90,14 +91,14 @@
   /*border: 1px solid red;*/
 }
 .control-left-right{
-  border: 1px solid yellow;
+  /*border: 1px solid yellow;*/
   top: 30px;
   margin-top: 27px;
   width: 13px;
   height: 35px;
 }
 .left-right-indicators{
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   top: 223px;
 }
 
@@ -132,14 +133,18 @@
   }
 }
 .API_button{
-  margin-left: -59px;
+  margin-left: -89px;
   background-color: #f2f2f2;
   /*color:  #1e3d7b;*/
   font-weight: bold;
   font-size: 13px;
   width: 200px;
+  margin-top: 15px;
 }
-
+.mat-raised-button{
+  margin-left: -89px;
+  margin-top: 15px;
+}
 .nav-link{
   /*color:  #1e3d7b;*/
   color: #1a53ff;

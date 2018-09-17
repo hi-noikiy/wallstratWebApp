@@ -1,10 +1,13 @@
 .coin-desc{
 	margin-top: 7px;
 	background-color: #3b9dd7;
-	margin-left: 94px;
-	margin-right: -99px;
+	/*margin-left: 94px;*/
+	/*margin-right: -99px;*/
+	left: 100px;
 	border-radius: 7px;
 	background-color: rgba(9, 12, 16, 0.4);
 	height: 87vh;
+	padding-left: 1px;
+	padding-right: 1px;
 }
 

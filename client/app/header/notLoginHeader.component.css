@@ -9,6 +9,9 @@
 	font-weight: bold;
 	
 }
+::ng-deep .nav-item .mat-select{
+	z-index: 10001 !important;
+}
 ::ng-deep .nav-item .mat-select-placeholder{
 	color: #5932cd !important;
 	/*margin-top:-15px;*/
@@ -19,6 +22,7 @@
 }
 ::ng-deep .mat-select-panel{
 	min-height: 400px;
+	z-index: 99999 !important;
 }
 ::ng-deep .nav-item .mat-form-field-underline {
   display: none;
@@ -47,4 +51,7 @@
 }
 .fa-institution{
 	padding-right: 5px;
+}
+::ng-deep .cdk-overlay-container {
+  z-index: 10009;
 }

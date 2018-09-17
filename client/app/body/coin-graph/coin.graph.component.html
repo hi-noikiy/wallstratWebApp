@@ -1,12 +1,13 @@
-<div class="row">
+<div class="container">
+  <div class="row ">
      <select class="select-time-granularity" (change)="requestGraphTimeFrame($event.target.value)" [(ngModel)]="selectedTime">
-      	<option value="6M" selected="selected">Past 6M</option>
+        <option value="6M" selected="selected">Past 6M</option>
         <option value="1W">Past 1W</option>
-      	<option value="4H">Past 4H</option>
+        <option value="4H">Past 4H</option>
     </select>
 </div>
 <div class="row coin-graph" *ngIf="lineChartData.length > 0">
-	<canvas baseChart width="400" height="210"
+  <canvas baseChart width="400" height="210"
                 [datasets]="lineChartData"
                 [options]="lineChartOptions"
                 [colors]="lineChartColors"
@@ -15,3 +16,5 @@
                 (chartClick)="chartClicked($event)">
     </canvas>
 </div>
+</div>
+
