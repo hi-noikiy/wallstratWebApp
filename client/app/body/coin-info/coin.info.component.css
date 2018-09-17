@@ -42,12 +42,12 @@
 	
 }
 .sell-order-book{
-	height: 37vh;
+	height: 35vh;
 	overflow: auto;
   	overflow-x: hidden;
 }
 .buy-order-book{
-	height: 37vh;
+	height: 35vh;
 	overflow: auto;
   	overflow-x: hidden;
 }

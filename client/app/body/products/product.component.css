@@ -16,7 +16,6 @@
   /*background-color: red;*/
   	/*padding: 5px; */
   	/*margin: 0px; */
-  margin-left: -97px;
   /*border: 1px solid green;*/
   height: 270px;
   width: 100%;
@@ -133,19 +132,20 @@
   }
 }
 .API_button{
-  margin-left: -89px;
+  /*margin-left: -89px;*/
   background-color: #f2f2f2;
   /*color:  #1e3d7b;*/
   font-weight: bold;
   font-size: 13px;
   width: 200px;
-  margin-top: 15px;
+  /*margin-top: 15px;*/
 }
 .mat-raised-button{
-  margin-left: -89px;
-  margin-top: 15px;
+  /*margin-left: -89px;*/
+  /*margin-top: 15px;*/
 }
 .nav-link{
   /*color:  #1e3d7b;*/
   color: #1a53ff;
 }
+

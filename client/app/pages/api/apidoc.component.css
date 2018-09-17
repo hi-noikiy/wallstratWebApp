@@ -10,11 +10,12 @@
 }
 .sidenav-menu{
 	margin-top: 20px;
-	background-color:#2C3E50;
-	background-color: #D4AC0D;
+	/*background-color:#2C3E50;*/
+	/*background-color: #D4AC0D;*/
+
 	/*border: solid #f2f2f2 2px;*/
 	border-radius: 3px;
-	height: 70vh;
+	height: 65vh;
 	padding: 7px;
 	width: 150px;
 }
