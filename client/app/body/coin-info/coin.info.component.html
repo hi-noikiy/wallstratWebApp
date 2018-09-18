@@ -1,4 +1,4 @@
-<div class="container order-book mt-2">
+<div class="container-fuild order-book mt-2 ml-2">
   <div class="row">
     <label class="book-symbol-label">Order Book</label>
     <select class="select-book-symbol" (change)="requestBookSymbol($event.target.value)" [(ngModel)]="selectedSymbol" required>
@@ -27,7 +27,7 @@
   </mat-grid-list>
   </div>
   
-  <div class="col-lg  col-6 buy-order-book">
+  <div class="col-lg col-6 buy-order-book">
     <mat-grid-list cols="3" rowHeight="23px">
       <mat-grid-tile class="grid-header"
           *ngFor="let tile of sellBookHeader"

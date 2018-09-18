@@ -1,5 +1,6 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row ">
+     <label class="time-label">Time </label>
      <select class="select-time-granularity" (change)="requestGraphTimeFrame($event.target.value)" [(ngModel)]="selectedTime">
         <option value="6M" selected="selected">Past 6M</option>
         <option value="1W">Past 1W</option>

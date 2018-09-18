@@ -15,7 +15,8 @@ import {ExchangeCodes} from 'wallstrat';
 
 const app = express();
 dotenv.load({ path: '.env' });
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 80));
+// app.set('host', "0.0.0.0");
 
 app.use('/', express.static(path.join(__dirname, '../client')));
 // console.log("current dir ", __dirname);
@@ -99,7 +100,7 @@ app.get('/', function(req, res) {
 
 // console.log("path", path.join(__dirname, '../client/index.html'));
 
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'),'0.0.0.0', () => {
 	console.log('Wallstrat listening on port ' + app.get('port'));
 });
 
