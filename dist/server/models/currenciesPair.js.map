@@ -1,0 +1,1 @@
+{"version":3,"file":"currenciesPair.js","sourceRoot":"","sources":["../../../server/models/currenciesPair.ts"],"names":[],"mappings":";;AAAA;IAKE,sBAAa,EAAU,EAAE,aAAqB,EAAE,cAAuB;QACpE,IAAI,CAAC,EAAE,GAAG,EAAE,CAAC;QACb,IAAI,CAAC,aAAa,GAAG,aAAa,CAAC;QACnC,IAAI,CAAC,cAAc,GAAG,cAAc,CAAC;IACxC,CAAC;IACH,mBAAC;AAAD,CAAC,AAVD,IAUC;AAVY,oCAAY;AAUxB,CAAC"}
