@@ -12,7 +12,7 @@ var clientApiPath = 'http://localhost:2929';
 var app = express();
 exports.app = app;
 dotenv.load({ path: '.env' });
-app.set('port', (process.env.PORT || 8080));
+app.set('port', (process.env.PORT || 80));
 app.set('host', "0.0.0.0");
 app.use('/', express.static(path.join(__dirname, '../client')));
 // console.log("current dir ", __dirname);
