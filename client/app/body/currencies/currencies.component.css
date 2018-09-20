@@ -115,3 +115,47 @@ th.mat-header-cell:last-child{
 	font-weight: bold;
     color: #e62e00;
 }
+
+@media only screen and (min-width: 768px) {
+    /* tablets and desktop */
+}
+
+@media only screen and (max-width: 767px) {
+    /* phones */
+    .table-header{
+		font-size: 10px !important;
+	}
+	.mat-cell{
+		font-size: 10px !important;
+	}
+	th.mat-header-cell:first-child{
+		padding-left: 0px !important;
+	}
+	.mat-cell:first-child{
+		font-size: 10px !important;
+	}
+	th.mat-header-cell:last-child{
+		padding-right: 24px !important;
+	}
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    .table-header{
+		font-size: 10px !important;
+	}
+	.mat-cell{
+		font-size: 10px !important;
+	}
+	th.mat-header-cell:first-child{
+		padding-left: 0px !important;
+	}
+	.mat-cell:first-child{
+		font-size: 10px !important;
+	}
+	th.mat-header-cell:last-child{
+		padding-right: 24px !important;
+	}
+	td.mat-cell:first-child, td.mat-footer-cell:first-child, th.mat-header-cell:first-child{
+		padding-left: 24px !important;
+	}
+}
