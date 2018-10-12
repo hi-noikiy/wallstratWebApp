@@ -49,7 +49,7 @@ function request_(options){
 
 
 let gdaxCoins:any;
-request_(clientApiPath+'/api/coins/gdax/').then(coins=>{
+request_(clientApiPath+'/v1/coins/gdax/').then(coins=>{
 	// console.log("coins bro ", JSON.parse(coins));
 	gdaxCoins = new Map(JSON.parse(coins).map(e => [e.code, e.name]));
 	// console.log("coins bro ", gdaxCoins);
@@ -57,7 +57,7 @@ request_(clientApiPath+'/api/coins/gdax/').then(coins=>{
 
 
 let bitfinexCoins:any;
-request_(clientApiPath+'/api/coins/bitfinex/').then(coins=>{
+request_(clientApiPath+'/v1/coins/bitfinex/').then(coins=>{
 	bitfinexCoins = new Map(JSON.parse(coins).map(e => [e.code, e.name]));
 });
 
@@ -65,7 +65,7 @@ request_(clientApiPath+'/api/coins/bitfinex/').then(coins=>{
 let productsList:Map<ExchangeCodes, Array<string>>=new Map<ExchangeCodes, Array<string>>();
 
 let gdaxProducts:any;
-request_(clientApiPath+'/api/products/gdax/').then(products=>{
+request_(clientApiPath+'/v1/products/gdax/').then(products=>{
 	productsList[ExchangeCodes.GDAX] = JSON.parse(products);
     gdaxProducts = JSON.parse(products).reduce(function(map, e) {
     		for(let pr of e.symbols){
@@ -78,7 +78,7 @@ request_(clientApiPath+'/api/products/gdax/').then(products=>{
 
 
 let bitfinexProducts:any;
-request_(clientApiPath+'/api/products/bitfinex/').then(products=>{
+request_(clientApiPath+'/v1/products/bitfinex/').then(products=>{
 	productsList[ExchangeCodes.BITFINEX] = JSON.parse(products);
     bitfinexProducts = JSON.parse(products).reduce(function(map, e) {
     	for(let pr of e.symbols){

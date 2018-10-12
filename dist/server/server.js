@@ -36,18 +36,18 @@ function request_(options) {
 }
 /////////////////////////////////////////////////////////////////////////////////
 var gdaxCoins;
-request_(clientApiPath + '/api/coins/gdax/').then(function (coins) {
+request_(clientApiPath + '/v1/coins/gdax/').then(function (coins) {
     // console.log("coins bro ", JSON.parse(coins));
     gdaxCoins = new Map(JSON.parse(coins).map(function (e) { return [e.code, e.name]; }));
     // console.log("coins bro ", gdaxCoins);
 });
 var bitfinexCoins;
-request_(clientApiPath + '/api/coins/bitfinex/').then(function (coins) {
+request_(clientApiPath + '/v1/coins/bitfinex/').then(function (coins) {
     bitfinexCoins = new Map(JSON.parse(coins).map(function (e) { return [e.code, e.name]; }));
 });
 var productsList = new Map();
 var gdaxProducts;
-request_(clientApiPath + '/api/products/gdax/').then(function (products) {
+request_(clientApiPath + '/v1/products/gdax/').then(function (products) {
     productsList[wallstrat_1.ExchangeCodes.GDAX] = JSON.parse(products);
     gdaxProducts = JSON.parse(products).reduce(function (map, e) {
         for (var _i = 0, _a = e.symbols; _i < _a.length; _i++) {
@@ -59,7 +59,7 @@ request_(clientApiPath + '/api/products/gdax/').then(function (products) {
     // console.log("gdax products ", gdaxProducts);
 });
 var bitfinexProducts;
-request_(clientApiPath + '/api/products/bitfinex/').then(function (products) {
+request_(clientApiPath + '/v1/products/bitfinex/').then(function (products) {
     productsList[wallstrat_1.ExchangeCodes.BITFINEX] = JSON.parse(products);
     bitfinexProducts = JSON.parse(products).reduce(function (map, e) {
         for (var _i = 0, _a = e.symbols; _i < _a.length; _i++) {
