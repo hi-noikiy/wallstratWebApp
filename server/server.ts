@@ -15,7 +15,7 @@ import {ExchangeCodes} from 'wallstrat';
 const clientApiPath = 'http://localhost:2929';
 const app = express();
 dotenv.load({ path: '.env' });
-app.set('port', (process.env.PORT || 80));
+app.set('port', (process.env.PORT || 3000));
 app.set('host', "0.0.0.0");
 
 app.use('/', express.static(path.join(__dirname, '../client')));
