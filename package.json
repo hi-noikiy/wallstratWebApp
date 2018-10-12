@@ -10,6 +10,7 @@
     "predev": "tsc -p server",
     "dev": "concurrently \"mongod\" \"ng serve --proxy-config proxy.conf.json  --open --port 80 --host 0.0.0.0\" \"tsc -w -p server\" \"nodemon dist/server/server.js\"",
     "prod": "concurrently \"ng build --prod --build-optimizer && tsc -p server && tsc -p client && nodemon dist/server/server.js\"",
+    "buildprod": "concurrently \"ng build --prod --build-optimizer && tsc -p server && tsc -p client\"",
     "test": "ng test",
     "testbe": "tsc -p server && mocha dist/server/test --exit",
     "lint": "ng lint",
