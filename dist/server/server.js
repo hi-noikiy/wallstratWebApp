@@ -85,7 +85,7 @@ app.get('/api/open-order', function (req, res) {
         var pr = _a[_i];
         for (var _b = 0, _c = pr.symbols; _b < _c.length; _b++) {
             var symbol = _c[_b];
-            var opt_book = clientApiPath + '/api/orderbook/gdax/' + symbol;
+            var opt_book = clientApiPath + '/v1/orderbook/gdax/' + symbol;
             var bookPromise = request_(opt_book).then(function (book) {
                 return book;
             }).catch(function (err) {
@@ -111,7 +111,7 @@ app.get('/api/coin-table', function (req, res) {
         var pr = _a[_i];
         var _loop_1 = function (symbol) {
             var row = {};
-            var opt_ticker = clientApiPath + '/api/ticker/gdax/' + symbol;
+            var opt_ticker = clientApiPath + '/v1/ticker/gdax/' + symbol;
             var tickerchangePromise = request_(opt_ticker).then(function (ticker) {
                 ticker = JSON.parse(ticker);
                 // console.log(" gdax ticker ", ticker)
@@ -121,7 +121,7 @@ app.get('/api/coin-table', function (req, res) {
                 row['ask_price'] = ticker.ask_price;
                 row['base_currency'] = gdaxProducts[symbol];
                 row['name'] = gdaxCoins.get(gdaxProducts[symbol]);
-                var opt_pricechange = clientApiPath + '/api/pricechange/gdax/' + symbol;
+                var opt_pricechange = clientApiPath + '/v1/pricechange/gdax/' + symbol;
                 return request_(opt_pricechange).then(function (change) {
                     change = JSON.parse(change);
                     // console.log('gdax change ', change.change_percentage)
@@ -142,7 +142,7 @@ app.get('/api/coin-table', function (req, res) {
         var pr = _e[_d];
         var _loop_2 = function (symbol) {
             var row = {};
-            var opt_ticker = clientApiPath + '/api/ticker/bitfinex/' + symbol;
+            var opt_ticker = clientApiPath + '/v1/ticker/bitfinex/' + symbol;
             var tickerchangePromise = request_(opt_ticker).then(function (ticker) {
                 ticker = JSON.parse(ticker);
                 row['symbol'] = symbol.toUpperCase();
@@ -174,7 +174,7 @@ app.get('/api/historical-data', function (req, res) {
         var pr = _a[_i];
         for (var _b = 0, _c = pr.symbols; _b < _c.length; _b++) {
             var symbol = _c[_b];
-            var opt_ohlc = clientApiPath + '/api/ohlc/gdax/' + symbol;
+            var opt_ohlc = clientApiPath + '/v1/ohlc/gdax/' + symbol;
             var request_option = {
                 method: 'GET',
                 uri: opt_ohlc,
@@ -196,7 +196,7 @@ app.get('/api/traded-pairs', function (req, res) {
     var resultPromises = [];
     var _loop_3 = function (xchCode) {
         var row = {};
-        var tradedPairsPromise = request_(clientApiPath + '/api/products/' + xchCode).then(function (products) {
+        var tradedPairsPromise = request_(clientApiPath + '/v1/products/' + xchCode).then(function (products) {
             // let code : ExchangeCodes = ExchangeCodes[<string>(xchCode).toUpperCase()];
             // tradedPairsList.set(xchCode, JSON.parse(products));
             row['code'] = xchCode;

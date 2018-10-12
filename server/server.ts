@@ -109,7 +109,7 @@ app.get('/api/open-order', function (req, res) {
 	let resultPromises = [];
 	for(let pr of productsList[ExchangeCodes.GDAX]){
 		for(let symbol of pr.symbols){
-			let opt_book = clientApiPath+'/api/orderbook/gdax/'+ symbol;
+			let opt_book = clientApiPath+'/v1/orderbook/gdax/'+ symbol;
 			let bookPromise = request_(opt_book).then(book =>{
 				return book;
 			}).catch(err=>{
@@ -141,7 +141,7 @@ app.get('/api/coin-table', function (req, res) {
 
 		for(let symbol of pr.symbols){
 			let row = {};
-			let opt_ticker = clientApiPath+'/api/ticker/gdax/'+ symbol;			
+			let opt_ticker = clientApiPath+'/v1/ticker/gdax/'+ symbol;			
 			let tickerchangePromise =request_(opt_ticker).then(function(ticker){
 				ticker = JSON.parse(ticker);
 				// console.log(" gdax ticker ", ticker)
@@ -152,7 +152,7 @@ app.get('/api/coin-table', function (req, res) {
 				row['base_currency'] =  gdaxProducts[symbol];
 				row['name'] = gdaxCoins.get(gdaxProducts[symbol]);
 
-				let opt_pricechange = clientApiPath+'/api/pricechange/gdax/'+ symbol;	
+				let opt_pricechange = clientApiPath+'/v1/pricechange/gdax/'+ symbol;	
 
 				return request_(opt_pricechange).then( change =>{
 					change = JSON.parse(change);
@@ -173,7 +173,7 @@ app.get('/api/coin-table', function (req, res) {
 
 		for(let symbol of pr.symbols){
 			let row = {};
-			let opt_ticker = clientApiPath+'/api/ticker/bitfinex/'+ symbol;		
+			let opt_ticker = clientApiPath+'/v1/ticker/bitfinex/'+ symbol;		
 			let tickerchangePromise = request_(opt_ticker).then(function(ticker){
 				ticker = JSON.parse(ticker);
 				row['symbol'] = symbol.toUpperCase();
@@ -206,7 +206,7 @@ app.get('/api/historical-data', function (req, res) {
 	let resultPromises = [];
 	for(let pr of productsList[ExchangeCodes.GDAX] ){
 		for(let symbol of pr.symbols){
-			let opt_ohlc = clientApiPath+'/api/ohlc/gdax/'+ symbol;
+			let opt_ohlc = clientApiPath+'/v1/ohlc/gdax/'+ symbol;
 			let request_option = {
 				method:'GET',
 				uri:opt_ohlc,
@@ -236,7 +236,7 @@ app.get('/api/traded-pairs', function (req, res) {
 	// let tradedPairsList=[];
 	for(let xchCode of exchangeCodes){
 		let row = {};
-		let tradedPairsPromise=request_(clientApiPath+'/api/products/'+xchCode).then(products=>{
+		let tradedPairsPromise=request_(clientApiPath+'/v1/products/'+xchCode).then(products=>{
 			// let code : ExchangeCodes = ExchangeCodes[<string>(xchCode).toUpperCase()];
 			// tradedPairsList.set(xchCode, JSON.parse(products));
 			row['code'] = xchCode;
